@@ -3,7 +3,7 @@
 # Check for common functions file
 COMMON_FUNCTIONS_FILE="/common_functions.sh"
 if [[ ! -f "$COMMON_FUNCTIONS_FILE" ]]; then
-    echo "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
+    log "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
     exit 1
 fi
 
@@ -17,12 +17,12 @@ COMFYUI_MODELS_CACHE_DIR=${1:-/workspace/ComfyUI-models-cache}
 
 # Validate COMFYUI directory
 if [[ ! -d "$COMFYUI_MODELS_CACHE_DIR" ]]; then
-    echo "Creating COMFYUI models cache directory: $COMFYUI_MODELS_CACHE_DIR"
+    log "Creating COMFYUI models cache directory: $COMFYUI_MODELS_CACHE_DIR"
     mkdir -p "$COMFYUI_MODELS_CACHE_DIR"
 fi
 
 # Create all model directories upfront
-echo "Creating model directories..."
+log "Creating model directories..."
 mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,unet,lora,controlnet,vae,upscale_models,esrgan,clip_vision,configs,embeddings}
 
 # Define model arrays

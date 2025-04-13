@@ -3,26 +3,27 @@
 # Check for common functions file
 COMMON_FUNCTIONS_FILE="/common_functions.sh"
 if [[ ! -f "$COMMON_FUNCTIONS_FILE" ]]; then
-    echo "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
+    log "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
     exit 1
 fi
 
 # Source common functions
 source "$COMMON_FUNCTIONS_FILE"
 
-# NOTE: This script will download these models into the main ComfyUI directory, not to the cache directory on network volume
+# NOTE: This script will download these models into the main ComfyUI directory, 
+# not to the cache directory on network volume.
 # This means they will be downloaded again on every container start
 # Set default COMFYUI directory if not provided
 COMFYUI_MODELS_MAIN_DIR=${1:-/ComfyUI}
 
 # Validate COMFYUI directory
 if [[ ! -d "$COMFYUI_MODELS_MAIN_DIR" ]]; then
-    echo "Error: COMFYUI directory does not exist: $COMFYUI_MODELS_MAIN_DIR"
+    log "Error: COMFYUI directory does not exist: $COMFYUI_MODELS_MAIN_DIR"
     exit 1
 fi
 
 # Create all model directories upfront
-echo "Creating model directories..."
+log "Creating model directories..."
 mkdir -p "${COMFYUI_MODELS_MAIN_DIR}/models/"{instantid,pulid,ipadapter}
 
 # Define additional model arrays

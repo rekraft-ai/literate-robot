@@ -1,13 +1,24 @@
 #!/bin/bash
 
-# NOTE: This script will download these custom_nodes into the main ComfyUI directory, not to the cache directory on network volume
+# Check for common functions file
+COMMON_FUNCTIONS_FILE="/common_functions.sh"
+if [[ ! -f "$COMMON_FUNCTIONS_FILE" ]]; then
+    echo "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
+    exit 1
+fi
+
+# Source common functions
+source "$COMMON_FUNCTIONS_FILE"
+
+# NOTE: This script will download these custom_nodes into the main ComfyUI directory, 
+# not to the cache directory on network volume.
 # This means they will be downloaded again on every container start
 # Set default COMFYUI directory if not provided
 COMFYUI_DIR=${1:-/ComfyUI}
 
 # Validate COMFYUI directory
 if [[ ! -d "$COMFYUI_DIR" ]]; then
-    echo "Error: COMFYUI directory does not exist: $COMFYUI_DIR"
+    log "Error: COMFYUI directory does not exist: $COMFYUI_DIR"
     exit 1
 fi
 
@@ -60,17 +71,17 @@ function install_custom_nodes() {
         requirements="${path}/requirements.txt"
         if [[ -d $path ]]; then
             if [[ ${AUTO_UPDATE,,} != "false" ]]; then
-                printf "Updating node: %s...\n" "${repo}"
-                ( cd "$path" && git pull )
+                log "Updating node: ${repo}"
+                ( cd "$path" && git pull ) >> "$LOG_FILE" 2>&1
                 if [[ -e $requirements ]]; then
-                   pip install -q --no-cache-dir -r "$requirements"
+                   pip install -q --no-cache-dir -r "$requirements" >> "$LOG_FILE" 2>&1
                 fi
             fi
         else
-            printf "Downloading node: %s...\n" "${repo}"
-            git clone "${repo}" "${path}" --recursive
+            log "Downloading node: ${repo}"
+            git clone "${repo}" "${path}" --recursive >> "$LOG_FILE" 2>&1
             if [[ -e $requirements ]]; then
-                pip install -q --no-cache-dir -r "${requirements}"
+                pip install -q --no-cache-dir -r "${requirements}" >> "$LOG_FILE" 2>&1
             fi
         fi
     done
