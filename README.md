@@ -6,9 +6,7 @@ Script to fulfil the post-start provisioning of the ComfyUI nodes and models. Us
 
 | Environment Variable | Raw GitHub URL |
 |---------------------|----------------|
-| `CUSTOM_NODES_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_custom_nodes.sh` |
-| `MODELS_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_models.sh` |
-| `ADDITIONAL_MODELS_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_additional_models.sh` |
+| `PROVISIONING_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/` |
 
 ## Scripts
 
