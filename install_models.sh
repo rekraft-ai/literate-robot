@@ -79,10 +79,6 @@ EMBEDDINGS=(
     # Example: "https://example.com/embedding.pt;custom_embedding.pt"
 )
 
-INSIGHTFACE_ANTELOPE=(
-    "https://github.com/deepinsight/insightface/releases/download/v0.7/antelopev2.zip;models/antelopev2.zip"
-)
-
 # Main installation function
 function install_models() {
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/checkpoints" "${CHECKPOINT_MODELS[@]}"
@@ -95,10 +91,6 @@ function install_models() {
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/clip_vision" "${CLIPVISION_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/configs" "${CONFIGS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/embeddings" "${EMBEDDINGS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/insightface" "${INSIGHTFACE_ANTELOPE[@]}"
-
-    cd "${COMFYUI_MODELS_CACHE_DIR}/models/insightface/models/"
-    unzip antelopev2.zip
 }
 
 # Execute the installation if this script is run directly

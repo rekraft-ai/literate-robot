@@ -15,6 +15,7 @@ source "$COMMON_FUNCTIONS_FILE"
 # This means they will be downloaded again on every container start
 # Set default COMFYUI directory if not provided
 COMFYUI_MODELS_MAIN_DIR=${1:-/ComfyUI}
+COMFYUI_MODELS_CACHE_DIR=${1:-/workspace/ComfyUI-models-cache}
 
 # Validate COMFYUI directory
 if [[ ! -d "$COMFYUI_MODELS_MAIN_DIR" ]]; then
@@ -24,7 +25,8 @@ fi
 
 # Create all model directories upfront
 log "Creating model directories..."
-mkdir -p "${COMFYUI_MODELS_MAIN_DIR}/models/"{instantid,pulid,ipadapter}
+mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{instantid,pulid,ipadapter,insightface}
+mkdir -p "${COMFYUI_MODELS_MAIN_DIR}/models/"{instantid,pulid,ipadapter,insightface}
 
 # Define additional model arrays
 INSTANTID_MODELS=(
@@ -51,11 +53,25 @@ IPADAPTER_MODELS=(
     "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors;ipadapter/ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors"
 )
 
+INSIGHTFACE_ANTELOPE=(
+    "https://github.com/deepinsight/insightface/releases/download/v0.7/antelopev2.zip;models/antelopev2.zip"
+)
+
 # Main installation function
 function install_additional_models() {
-    download_files "${COMFYUI_MODELS_MAIN_DIR}/models/instantid" "${INSTANTID_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_MAIN_DIR}/models/pulid" "${PULID_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_MAIN_DIR}/models/ipadapter" "${IPADAPTER_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/instantid" "${INSTANTID_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/pulid" "${PULID_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/ipadapter" "${IPADAPTER_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/insightface" "${INSIGHTFACE_ANTELOPE[@]}"
+
+    cd "${COMFYUI_MODELS_CACHE_DIR}/models/insightface/models/"
+    unzip -o antelopev2.zip
+
+    # Copy models to main ComfyUI directory
+    cp -r "${COMFYUI_MODELS_CACHE_DIR}/models/instantid" "${COMFYUI_MODELS_MAIN_DIR}/models/"
+    cp -r "${COMFYUI_MODELS_CACHE_DIR}/models/pulid" "${COMFYUI_MODELS_MAIN_DIR}/models/"
+    cp -r "${COMFYUI_MODELS_CACHE_DIR}/models/ipadapter" "${COMFYUI_MODELS_MAIN_DIR}/models/"
+    cp -r "${COMFYUI_MODELS_CACHE_DIR}/models/insightface" "${COMFYUI_MODELS_MAIN_DIR}/models/"
 }
 
 # Execute the installation if this script is run directly
