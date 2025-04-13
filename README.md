@@ -2,11 +2,13 @@
 
 This repository contains provisioning scripts for setting up ComfyUI models and custom nodes. These scripts are designed to work with RunPod deployments and ComfyUI installations.
 
-Script to fulfil the post-start provisioning of the ComfyUI nodes and models. Use the path of these scripts as the values for the following environment variables on the Docker image:
+Script to fulfil the post-start provisioning of the ComfyUI nodes and models. Use the following environment variables in your Docker image configuration:
 
-* CUSTOM_NODES_SCRIPT_URL
-* MODELS_SCRIPT_URL
-* ADDITIONAL_MODELS_SCRIPT_URL
+| Environment Variable | Raw GitHub URL |
+|---------------------|----------------|
+| `CUSTOM_NODES_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_custom_nodes.sh` |
+| `MODELS_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_models.sh` |
+| `ADDITIONAL_MODELS_SCRIPT_URL` | `https://raw.githubusercontent.com/rekraft-ai/literate-robot/master/install_additional_models.sh` |
 
 ## Scripts
 
