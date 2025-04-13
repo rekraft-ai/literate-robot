@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check for common functions file
-COMMON_FUNCTIONS_FILE="$(dirname "${BASH_SOURCE[0]}")/common_functions.sh"
+COMMON_FUNCTIONS_FILE="/common_functions.sh"
 if [[ ! -f "$COMMON_FUNCTIONS_FILE" ]]; then
     echo "Error: Common functions file not found: $COMMON_FUNCTIONS_FILE"
     exit 1

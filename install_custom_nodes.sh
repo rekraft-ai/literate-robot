@@ -63,14 +63,14 @@ function install_custom_nodes() {
                 printf "Updating node: %s...\n" "${repo}"
                 ( cd "$path" && git pull )
                 if [[ -e $requirements ]]; then
-                   pip install --no-cache-dir -r "$requirements"
+                   pip install -q --no-cache-dir -r "$requirements"
                 fi
             fi
         else
             printf "Downloading node: %s...\n" "${repo}"
             git clone "${repo}" "${path}" --recursive
             if [[ -e $requirements ]]; then
-                pip install --no-cache-dir -r "${requirements}"
+                pip install -q --no-cache-dir -r "${requirements}"
             fi
         fi
     done
