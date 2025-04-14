@@ -32,25 +32,25 @@ mkdir -p "${COMFYUI_MODELS_MAIN_DIR}/models/"{instantid,pulid,ipadapter,insightf
 INSTANTID_MODELS=(
     "https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin;instantid/ip-adapter.bin"
     "https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors;instantid/controlnet-instantid-sdxl.safetensors"
-    "https://huggingface.co/InstantX/InstantID/resolve/main/antelopev2;instantid/antelopev2"
+    "https://huggingface.co/InstantX/InstantID/resolve/main/antelopev2;antelopev2"
 )
 
 PULID_MODELS=(
-    "https://huggingface.co/InstantX/PuLID/resolve/main/pulid.bin;pulid/pulid.bin"
-    "https://huggingface.co/InstantX/PuLID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors;pulid/controlnet-pulid-sdxl.safetensors"
+    "https://huggingface.co/InstantX/PuLID/resolve/main/pulid.bin;pulid.bin"
+    "https://huggingface.co/InstantX/PuLID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors;controlnet-pulid-sdxl.safetensors"
 )
 
 IPADAPTER_MODELS=(
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sd15.safetensors;ipadapter/ip-adapter-plus_sd15.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sd15.safetensors;ipadapter/ip-adapter-plus-face_sd15.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.safetensors;ipadapter/ip-adapter_sd15.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid_sd15.safetensors;ipadapter/ip-adapter-faceid_sd15.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid-plusv2_sd15.safetensors;ipadapter/ip-adapter-faceid-plusv2_sd15.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sdxl_vit-h.safetensors;ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sdxl_vit-h.safetensors;ipadapter/ip-adapter-plus-face_sdxl_vit-h.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sdxl_vit-h.safetensors;ipadapter/ip-adapter_sdxl_vit-h.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid_sdxl_vit-h.safetensors;ipadapter/ip-adapter-faceid_sdxl_vit-h.safetensors"
-    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors;ipadapter/ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sd15.safetensors;ip-adapter-plus_sd15.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sd15.safetensors;ip-adapter-plus-face_sd15.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.safetensors;ip-adapter_sd15.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid_sd15.safetensors;ip-adapter-faceid_sd15.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid-plusv2_sd15.safetensors;ip-adapter-faceid-plusv2_sd15.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sdxl_vit-h.safetensors;ip-adapter-plus_sdxl_vit-h.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sdxl_vit-h.safetensors;ip-adapter-plus-face_sdxl_vit-h.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sdxl_vit-h.safetensors;ip-adapter_sdxl_vit-h.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid_sdxl_vit-h.safetensors;ip-adapter-faceid_sdxl_vit-h.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors;ip-adapter-faceid-plusv2_sdxl_vit-h.safetensors"
 )
 
 INSIGHTFACE_ANTELOPE=(

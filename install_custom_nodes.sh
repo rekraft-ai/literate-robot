@@ -32,8 +32,10 @@ NODES=(
 
     # Instant ID Based Workflows from Cubiq
     "https://github.com/cubiq/ComfyUI_InstantID"
-    "https://github.com/vuongminh1907/ComfyUI_ZenID"
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
+
+    # Conflicts with ComfyUI_InstantID (also has InstantIDFaceAnalysis)
+    # "https://github.com/vuongminh1907/ComfyUI_ZenID"
 
     # Conflicts with many other nodes. Is Jake better than Cubiq for InstantID nodes?
     # "https://github.com/jakechai/ComfyUI-JakeUpgrade"
