@@ -28,6 +28,7 @@ mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,unet,lora,controlnet,
 # Define model arrays
 CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/798204?type=Model&format=SafeTensor&size=full&fp=fp16;sdxl/juggernautXL_v8Rundiffusion.safetensors"
+    "https://civitai.com/api/download/models/456538?type=Model&format=SafeTensor&size=pruned&fp=fp16;sdxl/juggernautXL_versionXInpaint.safetensors"
     "https://civitai.com/api/download/models/1041855?type=Model&format=SafeTensor&size=pruned&fp=fp16;sdxl/albedobaseXL_v31Large.safetensors"
     "https://civitai.com/api/download/models/297740?type=Model&format=SafeTensor&size=pruned&fp=fp16;sdxl/dynavisionXLAllInOneStylized_releaseV0610Bakedvae.safetensors"
     "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors;sdxl/sd_xl_base_1.0.safetensors"

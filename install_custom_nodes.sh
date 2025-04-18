@@ -34,6 +34,9 @@ NODES=(
     "https://github.com/cubiq/ComfyUI_InstantID"
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
 
+    # Inpainting Nodes
+    "https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch"
+
     # Conflicts with ComfyUI_InstantID (also has InstantIDFaceAnalysis)
     # "https://github.com/vuongminh1907/ComfyUI_ZenID"
 
