@@ -23,7 +23,7 @@ fi
 
 # Create all model directories upfront
 log "Creating model directories..."
-mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,unet,lora,controlnet,vae,upscale_models,esrgan,clip_vision,configs,embeddings}
+mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,unet,loras,controlnet,vae,upscale_models,esrgan,clip_vision,configs,embeddings}
 
 # Define model arrays
 CHECKPOINT_MODELS=(
@@ -34,6 +34,7 @@ CHECKPOINT_MODELS=(
     "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors;sdxl/sd_xl_base_1.0.safetensors"
     "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors;sdxl/sd_xl_refiner_1.0.safetensors"
     "https://civitai.com/api/download/models/351306?type=Model&format=SafeTensor&size=full&fp=fp16;sdxl/dreamshaperXL_v21"
+    "https://huggingface.co/lllyasviel/flux1_dev/resolve/main/flux1-dev-fp8.safetensors;FLUX1/flux1-dev-fp8.safetensors"
 )
 
 UNET_MODELS=(    
@@ -42,8 +43,9 @@ UNET_MODELS=(
 
 LORA_MODELS=(
     # Graphic Novel / Comic Book Loras
-    # "https://huggingface.co/blink7630/graphic-novel-illustration/blob/main/Graphic_Novel_Illustration-000007.safetensors;sdxl/Graphic_Novel_Illustration-000007.safetensors"
-    # "https://civitai.com/api/download/models/107460?type=Model&format=SafeTensor;sdxl/TK_CCE_V1.00-SD15.safetensors"
+    "https://huggingface.co/blink7630/graphic-novel-illustration/blob/main/Graphic_Novel_Illustration-000007.safetensors;sdxl/Graphic_Novel_Illustration-000007.safetensors"
+    "https://civitai.com/api/download/models/107460?type=Model&format=SafeTensor;sdxl/TK_CCE_V1.00-SD15.safetensors"
+    "https://civitai.com/api/download/models/32988?type=Model&format=SafeTensor&size=full&fp=fp16;blindbox_v1_mix.safetensors"
 )
 
 VAE_MODELS=(
@@ -84,7 +86,7 @@ EMBEDDINGS=(
 function install_models() {
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/checkpoints" "${CHECKPOINT_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/unet" "${UNET_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/lora" "${LORA_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/loras" "${LORA_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/controlnet" "${CONTROLNET_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/vae" "${VAE_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/upscale_models" "${UPSCALE_MODELS[@]}"
