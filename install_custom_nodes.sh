@@ -29,13 +29,16 @@ NODES=(
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/jags111/efficiency-nodes-comfyui"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
+    "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet"
 
     # Instant ID Based Workflows from Cubiq
     "https://github.com/cubiq/ComfyUI_InstantID"
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
 
+    # Upscaling
+    "https://github.com/Ttl/ComfyUi_NNLatentUpscale"
     # Inpainting Nodes
-    "https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch"
+    # "https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch"
 
     # Conflicts with ComfyUI_InstantID (also has InstantIDFaceAnalysis)
     # "https://github.com/vuongminh1907/ComfyUI_ZenID"
