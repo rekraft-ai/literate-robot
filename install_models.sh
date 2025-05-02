@@ -23,7 +23,7 @@ fi
 
 # Create all model directories upfront
 log "Creating model directories..."
-mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,unet,loras,controlnet,vae,upscale_models,esrgan,clip_vision,configs,embeddings}
+mkdir -p "${COMFYUI_MODELS_CACHE_DIR}/models/"{checkpoints,clip,clip_vision,configs,controlnet,diffusion_models,embeddings,esrgan,loras,text_encoders,unet,upscale_models,vae}
 
 # Define model arrays
 CHECKPOINT_MODELS=(
@@ -37,32 +37,18 @@ CHECKPOINT_MODELS=(
     "https://huggingface.co/lllyasviel/flux1_dev/resolve/main/flux1-dev-fp8.safetensors;FLUX1/flux1-dev-fp8.safetensors"
 )
 
-UNET_MODELS=(    
-    "https://huggingface.co/Kwai-Kolors/Kolors/resolve/main/unet/diffusion_pytorch_model.fp16.safetensors;kwai-kolors/kolors_diffusion_pytorch_model.fp16.safetensors"
-)
-
-LORA_MODELS=(
-    # Graphic Novel / Comic Book Loras
-    "https://huggingface.co/blink7630/graphic-novel-illustration/blob/main/Graphic_Novel_Illustration-000007.safetensors;sdxl/Graphic_Novel_Illustration-000007.safetensors"
-    "https://civitai.com/api/download/models/107460?type=Model&format=SafeTensor;sdxl/TK_CCE_V1.00-SD15.safetensors"
-    "https://civitai.com/api/download/models/32988?type=Model&format=SafeTensor&size=full&fp=fp16;blindbox_v1_mix.safetensors"
-)
-
-VAE_MODELS=(
-)
-
-UPSCALE_MODELS=(
-    "https://huggingface.co/ffxvs/upscaler/resolve/f8edf6d7f286acdd70178a6ff0c736fc592e818e/ESRGAN_4x.pth;ESRGAN_4x.pth"
-)
-
-ESRGAN_MODELS=(
-    "https://huggingface.co/ffxvs/upscaler/resolve/f8edf6d7f286acdd70178a6ff0c736fc592e818e/ESRGAN_4x.pth;ESRGAN_4x.pth"
+CLIP_MODELS=(
 )
 
 CLIPVISION_MODELS=(
     "https://huggingface.co/comfyanonymous/clip_vision_g/resolve/main/clip_vision_g.safetensors;clip_vision_g.safetensors"
     "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k/resolve/main/open_clip_model.safetensors;CLIP-ViT-bigG-14-laion2B-39B-b160k.safetensors"
     "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K/resolve/main/model.safetensors;CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+)
+
+CONFIGS=(
+    # Add config files here
+    # Example: "https://example.com/config.json;custom_config.json"
 )
 
 CONTROLNET_MODELS=(
@@ -72,9 +58,9 @@ CONTROLNET_MODELS=(
     "https://huggingface.co/thibaud/controlnet-openpose-sdxl-1.0/resolve/main/OpenPoseXL2.safetensors;controlnet-openpose-sdxl-1.0.safetensors"
 )
 
-CONFIGS=(
-    # Add config files here
-    # Example: "https://example.com/config.json;custom_config.json"
+DIFFUSION_MODELS=(
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/diffusion_models/hidream_i1_full_fp8.safetensors?download=true;hidream_i1_full_fp8.safetensors"
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/diffusion_models/hidream_i1_full_fp16.safetensors?download=true;hidream_i1_full_fp16.safetensors"
 )
 
 EMBEDDINGS=(
@@ -82,18 +68,51 @@ EMBEDDINGS=(
     # Example: "https://example.com/embedding.pt;custom_embedding.pt"
 )
 
+ESRGAN_MODELS=(
+    "https://huggingface.co/ffxvs/upscaler/resolve/f8edf6d7f286acdd70178a6ff0c736fc592e818e/ESRGAN_4x.pth;ESRGAN_4x.pth"
+)
+
+LORA_MODELS=(
+    # Graphic Novel / Comic Book Loras
+    "https://huggingface.co/blink7630/graphic-novel-illustration/blob/main/Graphic_Novel_Illustration-000007.safetensors;sdxl/Graphic_Novel_Illustration-000007.safetensors"
+    "https://civitai.com/api/download/models/107460?type=Model&format=SafeTensor;sdxl/TK_CCE_V1.00-SD15.safetensors"
+    "https://civitai.com/api/download/models/32988?type=Model&format=SafeTensor&size=full&fp=fp16;blindbox_v1_mix.safetensors"
+)
+
+TEXT_ENCODERS=(
+    # Add text encoders here
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/text_encoders/clip_l_hidream.safetensors;clip_l_hidream.safetensors"
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/text_encoders/clip_g_hidream.safetensors;clip_g_hidream.safetensors"
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/text_encoders/t5xxl_fp8_e4m3fn_scaled.safetensors;t5xxl_fp8_e4m3fn_scaled.safetensors"
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/text_encoders/llama_3.1_8b_instruct_fp8_scaled.safetensors;llama_3.1_8b_instruct_fp8_scaled.safetensors"
+)
+
+UNET_MODELS=(    
+    "https://huggingface.co/Kwai-Kolors/Kolors/resolve/main/unet/diffusion_pytorch_model.fp16.safetensors;kwai-kolors/kolors_diffusion_pytorch_model.fp16.safetensors"
+)
+
+UPSCALE_MODELS=(
+    "https://huggingface.co/ffxvs/upscaler/resolve/f8edf6d7f286acdd70178a6ff0c736fc592e818e/ESRGAN_4x.pth;ESRGAN_4x.pth"
+)
+
+VAE_MODELS=(
+    "https://huggingface.co/Comfy-Org/HiDream-I1_ComfyUI/resolve/main/split_files/vae/ae.safetensors;ae.safetensors"
+)
+
 # Main installation function
 function install_models() {
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/checkpoints" "${CHECKPOINT_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/unet" "${UNET_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/loras" "${LORA_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/controlnet" "${CONTROLNET_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/vae" "${VAE_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/upscale_models" "${UPSCALE_MODELS[@]}"
-    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/esrgan" "${ESRGAN_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/clip" "${CLIP_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/clip_vision" "${CLIPVISION_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/configs" "${CONFIGS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/controlnet" "${CONTROLNET_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/diffusion_models" "${DIFFUSION_MODELS[@]}"
     download_files "${COMFYUI_MODELS_CACHE_DIR}/models/embeddings" "${EMBEDDINGS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/esrgan" "${ESRGAN_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/loras" "${LORA_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/unet" "${UNET_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/upscale_models" "${UPSCALE_MODELS[@]}"
+    download_files "${COMFYUI_MODELS_CACHE_DIR}/models/vae" "${VAE_MODELS[@]}"
 }
 
 # Execute the installation if this script is run directly
